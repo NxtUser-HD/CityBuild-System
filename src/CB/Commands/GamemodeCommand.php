@@ -20,36 +20,41 @@ class GamemodeCommand extends VanillaCommand
 
     public function execute(CommandSender $sender, string $commandLabel, array $args)
     {
-        if ($sender instanceof Player) {
-            if ($sender->hasPermission("cb.gm")) {
-                if ($args[0] === "1") {
-                    $sender->setGamemode($sender::CREATIVE);
-                    $sender->sendMessage($this->plugin->prefix . "Dein Gamemode wurde Geändert§7!");
-                    return true;
-                } else {
-                    if ($args[0] === "2") {
-                        $sender->setGamemode($sender::ADVENTURE);
+        if (empty($args[1])) {
+            $sender->sendMessage($this->plugin->prefix . "Usage: /gm <0/1/2/3>");
+            return true;
+        } else {
+            if ($sender instanceof Player) {
+                if ($sender->hasPermission("cb.gm")) {
+                    if ($args[0] === "1") {
+                        $sender->setGamemode($sender::CREATIVE);
                         $sender->sendMessage($this->plugin->prefix . "Dein Gamemode wurde Geändert§7!");
                         return true;
                     } else {
-                        if ($args[0] === "3") {
-                            $sender->setGamemode($sender::SPECTATOR);
+                        if ($args[0] === "2") {
+                            $sender->setGamemode($sender::ADVENTURE);
                             $sender->sendMessage($this->plugin->prefix . "Dein Gamemode wurde Geändert§7!");
                             return true;
                         } else {
-                            if ($args[0] === "0") {
-                                $sender->setGamemode($sender::SURVIVAL);
+                            if ($args[0] === "3") {
+                                $sender->setGamemode($sender::SPECTATOR);
                                 $sender->sendMessage($this->plugin->prefix . "Dein Gamemode wurde Geändert§7!");
                                 return true;
+                            } else {
+                                if ($args[0] === "0") {
+                                    $sender->setGamemode($sender::SURVIVAL);
+                                    $sender->sendMessage($this->plugin->prefix . "Dein Gamemode wurde Geändert§7!");
+                                    return true;
+                                }
                             }
                         }
                     }
+                } else {
+                    $sender->sendMessage($this->plugin->prefix . "§cDu hast nicht die nötigen Berechtigung, um diesen Command Auszuführen§7!");
+                    return true;
                 }
-            } else {
-                $sender->sendMessage($this->plugin->prefix . "§cDu hast nicht die nötigen Berechtigung, um diesen Command Auszuführen§7!");
-                return true;
             }
+            return true;
         }
-        return true;
     }
 }
