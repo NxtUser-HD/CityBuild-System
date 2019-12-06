@@ -22,7 +22,7 @@ class NightCommand extends VanillaCommand
     {
         if ($sender instanceof Player) {
             if ($sender->hasPermission("cb.night")) {
-                $sender->getLevel()->setTime(1000);
+                $sender->getLevel()->setTime(14000);
                 $sender->sendMessage($this->plugin->prefix . "Zeit wurde auf Nacht Gestellt§7!");
                 return true;
             } else {
