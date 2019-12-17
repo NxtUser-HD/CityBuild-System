@@ -3,5 +3,5 @@ branches:
 - master
 projects:
   CityBuild-System:
-    path: src/
+    path: ""
 ...
